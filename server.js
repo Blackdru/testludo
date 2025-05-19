@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Import required modules
-const startGame = require("./GameLogic");
+const startGame = require("./GamePlay/GameLogic");
 const userInfo = require("./Users");
 
 // Initialize user manager
