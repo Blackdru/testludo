@@ -10,7 +10,6 @@ const bodyParser = require("body-parser");
 const debug = require("debug")("test");
 const matchMaking = require("./MatchMaking");
 const user = require("./Users");
-const PORT = process.env.PORT || 3000;
 const shotId = require("shortid");
 const eastablishConection = require("./GamePlay/ClientApi").eastablishConection;
 
@@ -72,5 +71,5 @@ io.on("connection", (socket) => {
 
 
 app.listen(8080, () => {
-  console.log('Test server running on port 8080');
+  console.log('server running on port 8080');
 });
