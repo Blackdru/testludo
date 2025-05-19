@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const router = express.Router();
 const { type } = require("os");
-const app = require("express")();
+const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const bodyParser = require("body-parser");
@@ -70,6 +70,7 @@ io.on("connection", (socket) => {
   });
 });
 
-http.listen(PORT, () => {
+
+app.listen(PORT, () => {
   debug("listening on " + PORT);
 });
