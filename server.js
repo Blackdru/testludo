@@ -5,16 +5,31 @@ const router = express.Router();
 const { type } = require("os");
 const app = express();
 const http = require("http").createServer(app);
-const io = require("socket.io")(http);
 const bodyParser = require("body-parser");
 const debug = require("debug")("test");
 const matchMaking = require("./MatchMaking");
 const user = require("./Users");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || process.env.SERVER_PORT || 8080;
 const shotId = require("shortid");
 const eastablishConection = require("./GamePlay/ClientApi").eastablishConection;
 
+const cors = require('cors');
 
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || "*",
+  methods: ["GET", "POST"]
+}));
+
+// Configure Socket.IO for AWS load balancers and sticky sessions
+const io = require('socket.io')(http, {
+  pingTimeout: 60000,  // Increase ping timeout for AWS network conditions
+  pingInterval: 25000, // Adjust ping interval
+  transports: ['websocket', 'polling'],
+  cors: {
+    origin: process.env.CORS_ORIGIN || "*",
+    methods: ["GET", "POST"]
+  }
+});
 let onlineUserQ = [];
 
 io.on("connection", (socket) => {
@@ -72,5 +87,5 @@ io.on("connection", (socket) => {
 
 
 app.listen(PORT, () => {
-  debug("listening on " + PORT);
+`app running on ${PORT}`
 });
