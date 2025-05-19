@@ -19,7 +19,7 @@ const gamePlayApi = {
   ON_QUIT:"ON_QUIT",
 };
 
-const eastablishConection={
+const establishConnection={
     PLAYER_REGISTRATION:"PLAYER_REGISTRATION",
     MATCH_MAKING:"MATCH_MAKING",
     EXIT_ROOM:"EXIT_ROOM",
@@ -35,4 +35,4 @@ const eastablishConection={
 };
 
 module.exports.gamePlayApi = gamePlayApi;
-module.exports.eastablishConection = eastablishConection;
+module.exports.establishConnection = establishConnection;
